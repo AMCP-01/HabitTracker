@@ -53,6 +53,7 @@ int main()
 				cout << endl << "What would you like to put instead? Please write it down: ";
 				cin >> habitualActions.habit[hobbyEdit - 1];
 				cout << endl << "Change Successful!" << endl;
+				habitualActions.hobbiesMarked[hobbyEdit-1] = false;
 				system("pause");
 				system("cls");
 				break;
@@ -63,15 +64,39 @@ int main()
 		{
 			do
 			{
+				cout << "0. Exit" << endl << endl;
+				
 				HabitThatCounts(habitualActions);
-				cout << endl << "Please select the habit you wish to mark as done: ";
+				cout << endl << "Please select the habit you wish to mark as done or not done: ";
 				cin >> hobbyMarking;
+				if (habitualActions.habit[hobbyMarking - 1] == "Empty")
+				{
+					cout << endl << "There is no hobbies listed here" << endl;
+				}
 
-				habitualActions.hobbiesMarked[hobbyMarking - 1] = true;
-				cout << endl << "Marking Done";
-				system("pause");
-				system("cls");
-				break;
+				else if (habitualActions.hobbiesMarked[hobbyMarking - 1] == false)
+				{
+					habitualActions.hobbiesMarked[hobbyMarking - 1] = true;
+					cout << endl << "Marking Done";
+					system("pause");
+					system("cls");
+					break;
+				}
+				else if (habitualActions.hobbiesMarked[hobbyMarking - 1] == true)
+				{
+					habitualActions.hobbiesMarked[hobbyMarking - 1] = false;
+					cout << endl << "Marking Done";
+					system("pause");
+					system("cls");
+					break;
+				}
+				else if (0 == hobbyMarking)
+				{
+					system("pause");
+					system("cls");
+					break;
+				}
+				
 
 			} while (true);
 		}
